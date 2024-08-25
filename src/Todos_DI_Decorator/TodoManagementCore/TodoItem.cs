@@ -1,11 +1,14 @@
-﻿namespace TodoManagementCore;
+﻿using System.Data;
+
+namespace TodoManagementCore;
 
 public enum TodoStatus
 {
     None = 0,
     Created,
     Started,
-    Closed
+    Closed,
+    Ignored
 }
 
 public class TodoItem
@@ -60,6 +63,15 @@ public class TodoItem
         Status = TodoStatus.Closed;
     }
 
+    public void Cancel()
+    {
+        if (EndAt is not null )
+            throw new InvalidOperationException("the task is closed");
+        Status = TodoStatus.Ignored;
+
+    }
+
+    
     public override string ToString()
     {
         return $"{nameof(Id)} : {Id} - {nameof(Title)} : {Title} - {nameof(StartAt)} : {StartAt?.ToShortDateString()} - {nameof(Status)} : {Status}";

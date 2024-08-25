@@ -27,8 +27,18 @@ public class LoggingTodoManager : ITodoManager
         return all;
     }
 
+    public void GetTodoById(int id)
+    {
+        todoManager.GetTodoById(id);
+
+        logger.WriteLog("Todos found");
+        
+    }
+
     public void UpdaTodo(TodoItem todo)
     {
         todoManager.UpdaTodo(todo);
+        logger.WriteLog("Todo updated");
+
     }
 }

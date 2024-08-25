@@ -11,8 +11,5 @@ services.AddScoped<ITodoManager, LoggingTodoManager>(sp=> new LoggingTodoManager
 
 var serviceProvider = services.BuildServiceProvider();
 
-TodoDemo.CreateAndDisplayTodos(serviceProvider.GetRequiredService<ITodoManager>());
-TodoDemo.StartTodo(2, serviceProvider.GetRequiredService<ITodoManager>());
+TodoDemo.StartApplication(serviceProvider.GetRequiredService<ITodoManager>());
 
-Console.ReadLine();
-//Console.WriteLine("Hello, World!");

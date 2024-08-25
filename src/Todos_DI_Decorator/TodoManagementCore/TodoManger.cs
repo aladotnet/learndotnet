@@ -34,6 +34,20 @@ public class TodoManager : ITodoManager
 
     public IReadOnlyList<TodoItem> GetAll() => _todos.AsReadOnly();
 
+
+    public void GetTodoById(int id)
+    {
+        var todo = _todos.Where(x => x.Id == id);
+        if (todo is null) { 
+        Console.WriteLine("task not found");
+        return; }
+
+        Console.WriteLine(todo);
+
+    }
+
+
+
     private int CaculateId()
     {
         if (!_todos.Any())
