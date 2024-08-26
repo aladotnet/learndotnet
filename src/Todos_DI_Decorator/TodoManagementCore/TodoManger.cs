@@ -25,11 +25,13 @@ public class TodoManager : ITodoManager
     }
 
 
-    public void UpdaTodo(TodoItem todo)
+    public void UpdaTodo(int id, string NewTitle,string NewDescription)
     {
-        var existing = _todos.FirstOrDefault(x => x.Id == todo.Id);
-        _todos.Remove(existing);
-        _todos.Add(todo);
+        var serched = Search(id);
+        if (serched == null) { 
+            Console.WriteLine("task not found");
+        return; }
+        serched.ChangeDetails(NewTitle, NewDescription);
     }
 
     public IReadOnlyList<TodoItem> GetAll() => _todos.AsReadOnly();
@@ -37,7 +39,7 @@ public class TodoManager : ITodoManager
 
     public void GetTodoById(int id)
     {
-        var todo = _todos.Where(x => x.Id == id);
+        var todo = Search(id);
         if (todo is null) { 
         Console.WriteLine("task not found");
         return; }
@@ -46,8 +48,47 @@ public class TodoManager : ITodoManager
 
     }
 
+    public void CancelTodo(int id)
+    {
+        var serched = Search(id);
+        if (serched == null)
+        {
+            Console.WriteLine($"Id: [{id}] not found");
+            return;
+        }
 
+        serched.Cancel();
 
+    }
+    public void CloseTodo(int id) {
+        var serched = Search(id);
+        if (serched == null)
+        {
+            Console.WriteLine($"Id: [{id}] not found");
+            return;
+        }
+        serched.Close(); 
+    }
+
+    public void StratTode(int id)
+    {
+        var serched = Search(id);
+        if (serched == null)
+        {
+            Console.WriteLine($"Id: [{id}] not found");
+            return;
+        }
+        serched.Start();
+    }
+    private TodoItem Search(int id)
+    {
+        var found = _todos.FirstOrDefault(x => x.Id == id);
+
+        if (found is null)
+            return null;
+        return found;
+
+    }
     private int CaculateId()
     {
         if (!_todos.Any())
@@ -55,4 +96,5 @@ public class TodoManager : ITodoManager
 
         return _todos.Select(x => x.Id).Max() + 1;
     }
-}
+
+    }

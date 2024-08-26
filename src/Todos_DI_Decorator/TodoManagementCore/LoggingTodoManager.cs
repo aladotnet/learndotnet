@@ -18,6 +18,28 @@ public class LoggingTodoManager : ITodoManager
         return todo;
     }
 
+    public void CancelTodo(int id)
+    {
+        todoManager.CancelTodo(id);
+
+        logger.WriteLog("Todos Cancled");
+    }
+
+
+    public void CloseTodo(int id)
+    {
+        todoManager.CloseTodo(id);
+
+        logger.WriteLog("Todos Closed");
+    }
+
+    public void StratTode(int id)
+    {
+        todoManager.StratTode(id);
+
+        logger.WriteLog("Todos Started");
+    }
+
     public IReadOnlyList<TodoItem> GetAll()
     {
         logger.WriteLog("Getting todos ...");
@@ -35,10 +57,10 @@ public class LoggingTodoManager : ITodoManager
         
     }
 
-    public void UpdaTodo(TodoItem todo)
+    public void UpdaTodo(int id, string title, string description)
     {
-        todoManager.UpdaTodo(todo);
-        logger.WriteLog("Todo updated");
+        todoManager.UpdaTodo(id,title,description);
+        logger.WriteLog("Todos updated");
 
     }
 }

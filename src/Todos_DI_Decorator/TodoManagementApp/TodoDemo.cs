@@ -4,7 +4,7 @@
 using System.Runtime.CompilerServices;
 using TodoManagementCore;
 
-public static class TodoDemo
+public static class TodoDemo 
 {
     public static void StartApplication(ITodoManager service)
     {
@@ -44,29 +44,33 @@ public static class TodoDemo
                     Console.WriteLine("which task would you like started");
                         int taskId = 0;
                         int.TryParse(Console.ReadLine(),out taskId);
-                        StartTodo(taskId, service);
+                        service.StratTode(taskId);
                     break;
 //over testing
                 case 4:
                     Console.WriteLine("which task would you like updated");
                     int updatedtask = 0;
-                    int.TryParse(Console.ReadLine(), out updatedtask);
-                    TodoItem todoupdate = service.GetAll()[updatedtask];
-                    service.UpdaTodo(todoupdate);
+                    int.TryParse(Console.ReadLine(), out taskId);
+                    Console.WriteLine("write the new title");
+                    string title = Console.ReadLine();
+                    Console.WriteLine("write the new description");
+                    string description = Console.ReadLine();
+
+                    service.UpdaTodo(updatedtask,title,description);
                     break;
 
                 case 5:
                     Console.WriteLine("which task would you like Closed");
                     int closedtask = 0;
                     int.TryParse(Console.ReadLine(), out closedtask);
-                    CloseTodo(closedtask, service);
+                    service.CloseTodo(closedtask);
 
                     break;
                 case 6:
                     Console.WriteLine("which task would you like Caceled");
                     int canceledtask = 0;
                     int.TryParse(Console.ReadLine(), out canceledtask);
-                    CancelTodo(canceledtask, service);
+                    service.CancelTodo(canceledtask);
                     break;
 
                 case 7:
@@ -88,72 +92,5 @@ public static class TodoDemo
         }
     }
 
-
-
-
-
-
-
-
-
-   
-
-    public static void StartTodo(int id, ITodoManager service)
-    {
-        var todos = service.GetAll();
-
-        var found = todos.FirstOrDefault(x => x.Id == id);
-
-        if(found is null)
-        {
-            Console.WriteLine($"Id: [{id}] not found" );
-            return;
-        }
-
-        found.Start();
-        foreach (var todo in todos)
-        {
-            Console.WriteLine(todo);
-        }
-
-    }
-    public static void CloseTodo(int id, ITodoManager service)
-    {
-        var todos = service.GetAll();
-
-        var found = todos.FirstOrDefault(x => x.Id == id);
-
-        if (found is null)
-        {
-            Console.WriteLine($"Id: [{id}] not found");
-            return;
-        }
-
-        found.Close();
-        foreach (var todo in todos)
-        {
-            Console.WriteLine(todo);
-        }
-
-    }
-
-    public static void CancelTodo(int id, ITodoManager service)
-    {
-        var todos = service.GetAll();
-
-        var found = todos.FirstOrDefault(x => x.Id == id);
-
-        if (found is null)
-        {
-            Console.WriteLine($"Id: [{id}] not found");
-            return;
-        }
-
-        found.Cancel();
-        foreach (var todo in todos)
-        {
-            Console.WriteLine(todo);
-        }
-
-    }
+  
 }
