@@ -15,4 +15,4 @@ TodoDemo.CreateAndDisplayTodos(serviceProvider.GetRequiredService<ITodoManager>(
 TodoDemo.StartTodo(2, serviceProvider.GetRequiredService<ITodoManager>());
 
 Console.ReadLine();
-//Console.WriteLine("Hello, World!");
+Console.WriteLine("Hello, Ettahairy!");
