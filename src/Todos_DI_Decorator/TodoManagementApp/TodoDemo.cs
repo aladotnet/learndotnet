@@ -50,12 +50,11 @@ public static class TodoDemo
                 case 4:
                     Console.WriteLine("which task would you like updated");
                     int updatedtask = 0;
-                    int.TryParse(Console.ReadLine(), out taskId);
+                    int.TryParse(Console.ReadLine(), out updatedtask);
                     Console.WriteLine("write the new title");
                     string title = Console.ReadLine();
                     Console.WriteLine("write the new description");
                     string description = Console.ReadLine();
-
                     service.UpdaTodo(updatedtask,title,description);
                     break;
 

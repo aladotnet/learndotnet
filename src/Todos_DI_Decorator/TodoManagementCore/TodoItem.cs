@@ -11,7 +11,7 @@ public enum TodoStatus
     Ignored
 }
 
-public class TodoItem
+public class TodoItem: ITodoItem
 {
     public int Id { get; }
     public string Title { get; private set; }

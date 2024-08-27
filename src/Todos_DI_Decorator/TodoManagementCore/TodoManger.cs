@@ -28,8 +28,10 @@ public class TodoManager : ITodoManager
     public void UpdaTodo(int id, string NewTitle,string NewDescription)
     {
         var serched = Search(id);
-        if (serched == null) { 
-            Console.WriteLine("task not found");
+        if (serched == null)
+        {
+           
+        Console.WriteLine("task not found");
         return; }
         serched.ChangeDetails(NewTitle, NewDescription);
     }
