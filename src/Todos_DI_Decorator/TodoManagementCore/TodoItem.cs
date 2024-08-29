@@ -5,7 +5,8 @@ public enum TodoStatus
     None = 0,
     Created,
     Started,
-    Closed
+    Closed,
+    Cancelled
 }
 
 public class TodoItem
@@ -26,6 +27,14 @@ public class TodoItem
         Status = status;
     }
 
+    public void Cancel()
+    {
+        if (Status == TodoStatus.Closed )
+            throw new InvalidOperationException("You cannot cancel a closed task.");
+
+        Status = TodoStatus.Cancelled;
+        EndAt = DateTime.Now;
+    }
 
     public static TodoItem New(int id, string title)
     {
@@ -50,6 +59,7 @@ public class TodoItem
         StartAt = DateTime.Now;
         Status = TodoStatus.Started;
     }
+    
 
     public void Close()
     {

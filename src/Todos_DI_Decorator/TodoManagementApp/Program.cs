@@ -13,6 +13,9 @@ var serviceProvider = services.BuildServiceProvider();
 
 TodoDemo.CreateAndDisplayTodos(serviceProvider.GetRequiredService<ITodoManager>());
 TodoDemo.StartTodo(2, serviceProvider.GetRequiredService<ITodoManager>());
+TodoDemo.CancelTodo(2, serviceProvider.GetRequiredService<ITodoManager>());
+TodoDemo.DisplayTodoById(2, serviceProvider.GetRequiredService<ITodoManager>());
+
 
 Console.ReadLine();
-Console.WriteLine("Hello, Ettahairy!");
+Console.WriteLine("Hello, Mohamed!");

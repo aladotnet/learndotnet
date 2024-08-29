@@ -13,7 +13,10 @@ public class TodoManager : ITodoManager
         _todos = new();
     }
 
-
+  public TodoItem GetTodoById(int id)
+        {
+            return _todos.FirstOrDefault(todo => todo.Id == id);
+        }
     public TodoItem AddTodo(string title)
     {
         _currentId = CaculateId();

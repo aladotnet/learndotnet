@@ -31,4 +31,19 @@ public class LoggingTodoManager : ITodoManager
     {
         todoManager.UpdaTodo(todo);
     }
+
+     public TodoItem GetTodoById(int id)
+        {
+            logger.WriteLog($"Getting todo with Id: {id}");
+            var todo = todoManager.GetTodoById(id);
+            if (todo != null)
+            {
+                logger.WriteLog("Todo found");
+            }
+            else
+            {
+                logger.WriteLog("Todo not found");
+            }
+            return todo;
+        }
 }
