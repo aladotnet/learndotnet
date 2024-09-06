@@ -5,7 +5,8 @@ public enum TodoStatus
     None = 0,
     Created,
     Started,
-    Closed
+    Closed,
+    Canceled
 }
 
 public class TodoItem
@@ -60,9 +61,22 @@ public class TodoItem
         Status = TodoStatus.Closed;
     }
 
+    public void Cancel()
+    {
+        if (Status == TodoStatus.Closed)
+        {
+            throw new InvalidOperationException("You can not cancel a closed Task.");
+        }
+        EndAt = DateTime.Now;
+        Status = TodoStatus.Canceled;
+    }
+
     public override string ToString()
     {
-        return $"{nameof(Id)} : {Id} - {nameof(Title)} : {Title} - {nameof(StartAt)} : {StartAt?.ToShortDateString()} - {nameof(Status)} : {Status}";
+        if (Description is null)
+            return $"{nameof(Id)} : {Id} - {nameof(Title)} : {Title} - {nameof(StartAt)} : {StartAt?.ToShortDateString()} - {nameof(Status)} : {Status}";
+        return $"{nameof(Id)} : {Id} - {nameof(Title)} : {Title} - {nameof(Description)} : {Description} - {nameof(StartAt)} : {StartAt?.ToShortDateString()} - {nameof(Status)} : {Status}";
+
     }
 
 

@@ -10,7 +10,7 @@ public class TodoManager : ITodoManager
 
     public TodoManager()
     {
-        _todos = new();
+           _todos = new();
     }
 
 
@@ -28,7 +28,10 @@ public class TodoManager : ITodoManager
     public void UpdaTodo(TodoItem todo)
     {
         var existing = _todos.FirstOrDefault(x => x.Id == todo.Id);
-        _todos.Remove(existing);
+        if (existing != null)
+        {
+            _todos.Remove(existing);
+        }
         _todos.Add(todo);
     }
 
@@ -40,5 +43,11 @@ public class TodoManager : ITodoManager
             return 1;
 
         return _todos.Select(x => x.Id).Max() + 1;
+    }
+    public TodoItem GetTodoById(int id)
+    {
+
+        var existing = _todos.FirstOrDefault(x => x.Id == id);
+        return existing;
     }
 }

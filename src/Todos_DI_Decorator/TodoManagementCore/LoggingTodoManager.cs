@@ -23,12 +23,25 @@ public class LoggingTodoManager : ITodoManager
         logger.WriteLog("Getting todos ...");
 
         var all = todoManager.GetAll();
-        logger.WriteLog("Todos found");
         return all;
     }
 
     public void UpdaTodo(TodoItem todo)
     {
         todoManager.UpdaTodo(todo);
+    }
+
+    public TodoItem GetTodoById(int id)
+    {
+        var TodoItem = todoManager.GetTodoById(id);
+        if (TodoItem == null)
+        {
+            logger.WriteLog("TodoItem not found");
+        }
+        else
+        {
+            logger.WriteLog("TodoItem found");
+        }
+        return TodoItem;
     }
 }
