@@ -8,7 +8,11 @@ public enum TodoStatus
     Closed
 }
 
-public class TodoItem
+public interface IIdentifier
+{
+    int Id { get; }
+}
+public class TodoItem //: IIdentifier
 {
     public int Id { get; }
     public string Title { get; private set; }
