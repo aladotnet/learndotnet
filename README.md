@@ -1,4 +1,3 @@
 # learndotnet
 represents dotnet examples 
-.
-Hello world!!!!
+.make some changes
